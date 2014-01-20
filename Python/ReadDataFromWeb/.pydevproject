@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse-pydev version="1.0"?>
+
+<pydev_project>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">python</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
+<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
+<path>C:\Program Files (x86)\python27</path>
+<path>C:\Program Files (x86)\python27\lib</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages</path>
+<path>C:\Program Files (x86)\python27\DLLs</path>
+<path>C:\Program Files (x86)\python27\libs</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\DateTime</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\dateutil</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\IPython</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\matplotlib</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\mpl_toolkits</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\numpy</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\pandas</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\pip</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\pyDatalog</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\pyreadline</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\pytz</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\scipy</path>
+<path>C:\Program Files (x86)\python27\lib\site-packages\virtualenv_support</path>
+</pydev_pathproperty>
+</pydev_project>
