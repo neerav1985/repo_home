@@ -1,14 +1,54 @@
-install.packages("quantmod")
-# load library
-require(quantmod)
-# some ETFs we might choose for a portfolio:
-symbols = c('SPY','IWM','EFA','EEM','AGG','IYR','GLD')
-# these are, respectiviely
-symbol.names = c('S&P 500','Russell 2000','Europe, Australasia, Far East developed', 'Emerging Markets','Agg bond','REIT','Gold')
-# download data using quantmod
-getSymbols(symbols, from = '2003-01-01', auto.assign = TRUE)
-# run a chart
-candleChart(SPY,theme='white', type='candles')
-# run a chart with shorter history so we can see better
-SPY_6MO<-SPY['2011-06-01::']
-candleChart(SPY_6MO,theme='white', type='candles')
+# Run install_packages.R
+
+library(quantmod)
+library(plyr)
+library(PortfolioAnalytics)
+
+symbols <- c("RELIANCE.NS","ONGC.NS","INFY.NS","TCS.NS","TECHM.NS","HEXAWARE.NS","COLPAL.NS","GODREJCP.NS")
+
+#1
+try(getSymbols(symbols)) 
+symbols <- symbols[symbols %in% ls()]
+
+#2
+sym.list <- llply(symbols, get) 
+
+#3
+data <- xts()
+for(i in seq_along(symbols)) {
+  symbol <- symbols[i]
+  data <- merge(data, get(symbol)[,paste(symbol, "Close", sep=".")])
+}
+colnames(data) <- symbols
+#returns <- diff(log(data))
+returns <- na.omit(diff(log(na.omit(data))))
+init.portfolio <- portfolio.spec(assets = colnames(returns))
+print.default(init.portfolio)
+init.portfolio <- add.constraint(portfolio = init.portfolio, type = "full_investment")
+init.portfolio <- add.constraint(portfolio = init.portfolio, type = "long_only")
+# Add objective for portfolio to minimize portfolio standard deviation
+minSD.portfolio <- add.objective(portfolio=init.portfolio, 
+                                 type="risk", 
+                                 name="StdDev")
+
+# Add objectives for portfolio to maximize mean per unit ES
+meanES.portfolio <- add.objective(portfolio=init.portfolio, 
+                                  type="return", 
+                                  name="mean")
+
+meanES.portfolio <- add.objective(portfolio=meanES.portfolio, 
+                                  type="risk", 
+                                  name="ES")
+print(minSD.portfolio)
+print(meanES.portfolio)
+
+minSD.opt <- optimize.portfolio(R = returns, portfolio = minSD.portfolio, 
+                                optimize_method = "ROI", trace = TRUE)
+print(minSD.opt)
+
+returns <- returns[returns[,1]<1]
+meanES.opt <- optimize.portfolio(R = returns, portfolio = meanES.portfolio, 
+                                optimize_method = "random", trace = TRUE)
+
+print(meanES.opt)
+
