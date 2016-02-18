@@ -14,7 +14,7 @@ packages <- c( "plyr",
               "grid", "zoo", "xts",
               "foreach", "ggplot2",
               "PerformanceAnalytics","PortfolioAnalytics",
-              "quantmod","ROI","ROI.plugin.glpk"
+              "quantmod","ROI","ROI.plugin.glpk", "forecast","caret"
               )
 ipak(packages)
 

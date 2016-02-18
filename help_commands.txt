@@ -1,0 +1,14 @@
+#install git
+sudo apt-get install git
+#remove default vim in ubuntu
+sudo apt-get remove vim.tiny
+#install vim-gnome support for python
+sudo apt-get install vim-gnome
+#get history
+history 50 > work/repo_home/help_commands.txt
+#first install vundle
+https://www.digitalocean.com/community/tutorials/how-to-use-vundle-to-manage-vim-plugins-on-a-linux-vps
+#commands
+if [ -e .vimrc ]; then mv .vimrc .vimrc_bak; fi
+if [ -e .vim ]; then mv .vim .vim_bak; fi
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
