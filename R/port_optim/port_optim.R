@@ -1,5 +1,5 @@
 # Run install_packages.R
-
+source("~/work/repo_home.git/R/port_optim/install_packages.R")
 library(quantmod)
 library(plyr)
 library(PortfolioAnalytics)
@@ -17,11 +17,11 @@ sym.list <- llply(symbols, get)
 data <- xts()
 for(i in seq_along(symbols)) {
   symbol <- symbols[i]
-  data <- merge(data, get(symbol)[,paste(symbol, "Close", sep=".")])
+  data <- merge(data, get(symbol)[,paste(symbol, "Adjusted", sep=".")])
 }
 colnames(data) <- symbols
 #returns <- diff(log(data))
-returns <- na.omit(diff(log(na.omit(data))))
+returns <- na.locf(diff(log(na.locf(data))))
 init.portfolio <- portfolio.spec(assets = colnames(returns))
 print.default(init.portfolio)
 init.portfolio <- add.constraint(portfolio = init.portfolio, type = "full_investment")
@@ -52,3 +52,11 @@ meanES.opt <- optimize.portfolio(R = returns, portfolio = meanES.portfolio,
 
 print(meanES.opt)
 
+install.packages("glmnet", repos = "http://cran.us.r-project.org")
+library(glmnet)
+cvfit <- cv.glmnet(as.matrix(returns[,colnames(returns)[colnames(returns) != 'RELIANCE.NS']]),
+                           as.matrix(returns[,'RELIANCE.NS']))
+plot(cvfit)
+print(cvfit)
+cvfit$lambda.min
+coef(cvfit, s = "lambda.min")
