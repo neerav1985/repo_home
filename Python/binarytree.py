@@ -69,7 +69,7 @@ class Btree:
         lh, rh = 1, 1
         if node.l:
             lh = 1 + self._maxHeight(node.l)
-        elif node.r:
+        if node.r:
             rh = 1 + self._maxHeight(node.l)
         return lh if lh > rh else rh
 
