@@ -2,13 +2,26 @@
 sudo apt-get install git
 #remove default vim in ubuntu
 sudo apt-get remove vim.tiny
+#install vim with python2 and python3
+http://askubuntu.com/questions/585237/whats-the-easiest-way-to-get-vim-with-python-3-support
 #install vim-gnome support for python
 sudo apt-get install vim-gnome
 #get history
 history 50 > work/repo_home/help_commands.txt
+
 #first install vundle
 https://www.digitalocean.com/community/tutorials/how-to-use-vundle-to-manage-vim-plugins-on-a-linux-vps
+
 #commands
 if [ -e .vimrc ]; then mv .vimrc .vimrc_bak; fi
 if [ -e .vim ]; then mv .vim .vim_bak; fi
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+#set up vim for C++ ide
+#install you complete me(might have to do sudo apt-get install python2.7-dev
+#cd ~/.vim/bundle/YouCompleteMe
+#sudo apt-get install python2.7-dev
+#./install.py --clang-completer
+http://www.alexeyshmalko.com/2014/youcompleteme-ultimate-autocomplete-plugin-for-vim/
+#copy ycm config from here: https://github.com/rasendubi/dotfiles/blob/master/.vim/.ycm_extra_conf.py
+
