@@ -5,7 +5,6 @@ class Node:
         self.v = val
         self.l = None
         self.r = None
-        self.h = None #height
 
 class Btree:
     def __init__(self ):
